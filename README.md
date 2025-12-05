@@ -67,7 +67,7 @@ predictions across all digit classes. \[2\]
 > The structure of this report is outlined below.
 
 <img src="./images/y3ucp0od.png"
-style="width:3.48611in;height:1.83889in" /><img src="./kfuoimc5.png"
+style="width:3.48611in;height:1.83889in" /><img src="./images/kfuoimc5.png"
 style="width:3.48611in;height:1.83889in" />
 
 > Fig. 2. Train set distribution.
@@ -366,7 +366,7 @@ high results were because of the range of rotation angles, since some
 ranges gave results similar to having no augmentation. The highest
 accuracy was actually reached without any augmentation.
 
-> <img src="./imeages/5zqw0chq.png"
+> <img src="./images/5zqw0chq.png"
 > style="width:3.48611in;height:1.23611in" />Fig. 10. CNN x Distortion
 >
 > Fig. 8. MLP x RMSprop
