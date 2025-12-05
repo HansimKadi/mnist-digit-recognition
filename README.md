@@ -22,7 +22,7 @@ conditions.
 
 > II\. VISUALIZATION
 
-<img src="./da4g2djq.png"
+<img src="./image/da4g2djq.png"
 style="width:2.73194in;height:2.78889in" />A. Quick look at samples
 
 > Fig. 1. Random sample.
