@@ -66,7 +66,7 @@ predictions across all digit classes. \[2\]
 
 > The structure of this report is outlined below.
 
-<img src="./y3ucp0od.png"
+<img src="./images/y3ucp0od.png"
 style="width:3.48611in;height:1.83889in" /><img src="./kfuoimc5.png"
 style="width:3.48611in;height:1.83889in" />
 
@@ -170,7 +170,7 @@ vector through a sequence of fully connected (dense) linear layers. The
 output layer produces ten neurons, each corresponding to one of the
 target digit classes.
 
-<img src="./zyvfna4a.png"
+<img src="./images/zyvfna4a.png"
 style="width:3.48611in;height:2.14722in" />B. The Convolutional Neural
 Network: CNN
 
@@ -256,7 +256,7 @@ distribution.
 > images.
 >
 > \# Model Optimizer Augmentation MLP
-> Experiments<img src="./ikzbn2ik.png"
+> Experiments<img src="./images/ikzbn2ik.png"
 > style="width:3.48611in;height:1.36667in" />
 >
 > 1 MLP SGD Rotation 2 MLP SGD Distortion 3 MLP SGD Inversion 4 MLP Adam
@@ -267,7 +267,7 @@ distribution.
 
 between predictions and actual targets to update the models parameters.
 
-> <img src="./i2umcp53.png"
+> <img src="./images/i2umcp53.png"
 > style="width:3.48611in;height:3.32083in" />neptuneai.png.webp
 >
 > 10 CNN SGD 11 CNN SGD 12 CNN SGD 13 CNN Adam 14 CNN Adam 15 CNN Adam
@@ -341,9 +341,9 @@ the lowest performance but improved steadily with each epoch. This
 pattern was the same for all three aug-mentations tested: rotation,
 inversion, and distortion. Models trained with SGD showed very
 consistent learning, and their accuracy peaked at 96% before early
-stopping.<img src="./p1jgogp1.png"
-style="width:3.48611in;height:1.23611in" /><img src="./dgz414hm.png"
-style="width:3.48611in;height:1.23611in" /><img src="./gl35wdv1.png"
+stopping.<img src="./images/p1jgogp1.png"
+style="width:3.48611in;height:1.23611in" /><img src="./images/dgz414hm.png"
+style="width:3.48611in;height:1.23611in" /><img src="./images/gl35wdv1.png"
 style="width:3.48611in;height:1.23611in" />
 
 Distortion had a bit more impact, but still not much. The models quickly
@@ -351,7 +351,7 @@ got used to the changed shapes, with only small changes before settling
 down. This shows the models could still generalize even when the images
 were warped.
 
-> <img src="./qhjkfifx.png"
+> <img src="./images/qhjkfifx.png"
 > style="width:3.48611in;height:1.36667in" />Fig. 9. CNN x Rotation
 >
 > Fig. 7. MLP x Adam
@@ -366,7 +366,7 @@ high results were because of the range of rotation angles, since some
 ranges gave results similar to having no augmentation. The highest
 accuracy was actually reached without any augmentation.
 
-> <img src="./5zqw0chq.png"
+> <img src="./imeages/5zqw0chq.png"
 > style="width:3.48611in;height:1.23611in" />Fig. 10. CNN x Distortion
 >
 > Fig. 8. MLP x RMSprop
