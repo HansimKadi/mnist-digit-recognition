@@ -40,6 +40,8 @@ Digit recognition is a foundational classification task in neural networks and d
 
 This report focuses on digit classification using the MNIST dataset, with the objective of maximizing test accuracy within the constraints of available computational resources and established methodologies. The dataset is accessed through the torchvision library in PyTorch and loaded using the PyTorch data loader. Training samples were collected from employees of the United States Census Bureau, and test samples were collected from high school students. This strategy poses some limitations for machine learning; however, the dataset now exhibits a wide range of handwriting styles, thereby increasing variability. This results in samples that vary in size, thickness, and alignment. It is noticeable that there are digits present that even a human would struggle to recognize.
 
+![Fig. 1 — Random sample from the MNIST dataset](mnist_images/fig1_random_samples.png)
+
 ---
 
 ## Exploration & Data Preparation
@@ -51,6 +53,10 @@ MNIST images are grayscale, each represented as a single-channel 28×28 pixel im
 ### B. Class Balances
 
 The distribution of digit classes in both the training and test sets is relatively balanced, although certain digits, such as one, seven, and three, exhibit slight overrepresentation in one or both splits. This class imbalance should be taken into account when evaluating model performance across individual classes. The data distribution provides insight into the model's exposure to each class and may indicate whether the current split is appropriate or if repartitioning is necessary. Maintaining class balance is essential to ensure that the model learns each class with equal representation and does not develop a bias toward more frequently occurring classes. The objective is to achieve accurate predictions across all digit classes.
+
+![Fig. 2 — Train set distribution](mnist_images/fig2_train_distribution.png)
+
+![Fig. 3 — Test set distribution](mnist_images/fig3_test_distribution.png)
 
 ### C. Scaling
 
@@ -86,6 +92,8 @@ The model reduces dimensionality from the initial 784-element input vector throu
 | Output | Linear | 64 | 10 (raw logits) |
 
 ### B. The Convolutional Neural Network (CNN)
+
+![Fig. 4 — CNN architecture](mnist_images/fig4_cnn_architecture.png)
 
 The CNN architecture comprises two convolutional blocks, each followed by a max-pooling layer that reduces spatial dimensions while preserving key features. The first convolutional layer extracts 16 feature maps using a 3×3 kernel, and the second layer increases this to 32 feature maps. Following the final pooling operation, the resulting feature maps (32×4×4) are flattened into a 512-element vector, which is then processed by a fully connected feed-forward network.
 
@@ -180,6 +188,8 @@ Because model training can change a lot over time, using a fixed learning rate i
 
 Once all parameters are configured, training of the nine distinct model configurations on both the MLP and CNN architectures can commence. Each configuration commences training with identical parameters, and the maximum permissible number of epochs is set to 100. During each iteration, a forward pass is executed, during which the input data is propagated through the network to generate predictions. Subsequently, a backward pass is performed, using the discrepancy between predictions and actual targets to update the model's parameters. This process repeats over many epochs, letting the model gradually lower the loss and improve accuracy.
 
+![Fig. 5 — Forward & backward pass](mnist_images/fig5_forward_backward_pass.png)
+
 Experiments showed that a learning rate of about 0.001 works well, and the step size should not be too small or too large. If these settings are off, the model might not find the best solution and early stopping could kick in too soon. Once a good starting point is found, it is important to watch certain parameters to understand how the model is learning.
 
 **Trackable parameters:** Epoch · Training accuracy · Training loss · Learning rate · Testing loss · Testing accuracy
@@ -192,9 +202,15 @@ Experiments showed that a learning rate of about 0.001 works well, and the step 
 
 **SGD** — SGD was the most stable and predictable optimizer. It started off with the lowest performance but improved steadily with each epoch. This pattern was the same for all three augmentations tested: rotation, inversion, and distortion. Models trained with SGD showed very consistent learning, and their accuracy peaked at 96% before early stopping. Distortion had a bit more impact, but still not much. The models quickly got used to the changed shapes, with only small changes before settling down. This shows the models could still generalize even when the images were warped.
 
+![Fig. 6 — MLP × SGD](mnist_images/fig6_mlp_sgd.png)
+
 **Adam** — Adam made quick progress at the start, converging well and beating the other optimizers for all types of augmentation. However, it was not always stable, showing some ups and downs early on before settling down later. Adam had the best results, reaching the mid-99% accuracy range.
 
+![Fig. 7 — MLP × Adam](mnist_images/fig7_mlp_adam.png)
+
 **RMSprop** — RMSprop was the most unstable of the three optimizers. Early on, it had big jumps and drops in performance, with lots of ups and downs before it finally settled later. It triggered early stopping more often than the others. While its results were still good, they were not as strong as Adam or SGD.
+
+![Fig. 8 — MLP × RMSprop](mnist_images/fig8_mlp_rmsprop.png)
 
 In these tests on MNIST, SGD was the most stable, improving steadily over time. Adam was the most efficient and had the best performance, balancing adaptability and stability. RMSprop was the most unpredictable. Both Adam and RMSprop started out more experimental but became more stable as training went on, while SGD stayed consistent throughout.
 
@@ -204,9 +220,15 @@ The augmentations — rotation, distortion, and inversion — had some effect on
 
 **Rotation** — Rotation augmentation worked well for both models. It is not clear if the high results were because of the range of rotation angles, since some ranges gave results similar to having no augmentation. The highest accuracy was actually reached without any augmentation.
 
+![Fig. 9 — CNN × Rotation](mnist_images/fig9_cnn_rotation.png)
+
 **Distortion** — Distortion was the hardest of the three augmentations. The models started with lower accuracy, but improved over time. Training was more challenging, showing that generalization was tougher. This augmentation made the models work harder to learn the data patterns.
 
+![Fig. 10 — CNN × Distortion](mnist_images/fig10_cnn_distortion.png)
+
 **Inversion** — Inversion augmentation led to an unusual result. Models trained with inversion reached almost perfect accuracy early on and stayed above 99% throughout. This suggests that inverting pixels did not hurt the model's ability to generalize. However, some runs failed to train because early stopping was triggered, likely due to a coding error.
+
+![Fig. 11 — CNN × Inversion](mnist_images/fig11_cnn_inversion.png)
 
 ---
 
@@ -225,3 +247,4 @@ The results indicate that Adam consistently reached the highest accuracy and con
 5. PyTorch.org, "torch.utils.data PyTorch 2.7 documentation," 2024. https://docs.pytorch.org/docs/stable/data.html.
 6. R. Sonthalia, J. Lok, and E. Rebrova, "On regularization via early stopping for least squares regression," 2024. https://arxiv.org/abs/2406.04425. [Accessed: Oct. 23, 2025].
 7. Wikipedia Contributors, "MNIST database," 2019. https://en.wikipedia.org/wiki/MNISTdatabase.
+
